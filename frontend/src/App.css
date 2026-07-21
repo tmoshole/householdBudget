@@ -1,34 +1,87 @@
-.App-logo {
-    height: 40vmin;
+/* App-level styles. Base theme + typography live in index.css. */
+.font-serif-display {
+    font-family: "Playfair Display", ui-serif, Georgia, serif;
+    letter-spacing: -0.01em;
+}
+
+.font-mono-nums {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Subtle paper-grain overlay to add tactile warmth without hurting contrast */
+.paper-grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
     pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+    background-image: radial-gradient(
+        rgba(120, 105, 80, 0.08) 1px,
+        transparent 1px
+    );
+    background-size: 3px 3px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Neumorphic tactile card */
+.card-tactile {
+    background-color: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.6) inset,
+        0 12px 30px -18px rgba(60, 50, 30, 0.18),
+        0 2px 6px -3px rgba(60, 50, 30, 0.08);
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.summary-glass {
+    background-color: rgba(253, 251, 247, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border));
 }
 
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+/* Row entrance micro-animation (framer-motion handles most, but fallback) */
+@keyframes rowIn {
     from {
-        transform: rotate(0deg);
+        opacity: 0;
+        transform: translateY(-4px);
     }
     to {
-        transform: rotate(360deg);
+        opacity: 1;
+        transform: translateY(0);
     }
+}
+
+.row-in {
+    animation: rowIn 220ms ease-out both;
+}
+
+/* Button lift interaction */
+.btn-lift {
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        background-color 160ms ease;
+}
+.btn-lift:hover {
+    transform: translateY(-1px);
+}
+.btn-lift:active {
+    transform: translateY(0);
+}
+
+/* Editable label caret + underline hint on hover */
+.editable-label {
+    border-bottom: 1px dashed transparent;
+    transition:
+        border-color 160ms ease,
+        color 160ms ease;
+}
+.editable-label:hover {
+    border-bottom-color: hsl(var(--border));
+}
+.editable-label:focus {
+    outline: none;
+    border-bottom-color: hsl(var(--primary));
 }
