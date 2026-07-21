@@ -373,14 +373,14 @@ export default function BudgetApp() {
                 key={key}
                 className="rounded-lg border border-border bg-background/60 p-4"
               >
-                <div className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
+                <div className="mb-2 text-xs tracking-widest text-muted-foreground">
                   <EditableLabel
                     value={people[key]}
                     testId={tidLabel}
                     onChange={(v) =>
                       set({ people: { ...people, [key]: v } })
                     }
-                    className="text-foreground/80 not-italic tracking-widest"
+                    className="text-foreground/80 text-sm font-medium"
                   />
                 </div>
                 <MoneyInput
