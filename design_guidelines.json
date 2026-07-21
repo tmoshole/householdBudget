@@ -1,0 +1,98 @@
+{
+  "typography": {
+    "headings": {
+      "fontFamily": "Playfair Display, serif",
+      "weights": ["400", "700"],
+      "usage": "Use tight letter spacing (tracking-tight) for H1/H2. Do not center align unless necessary. Creates an organic, high-end editorial feel."
+    },
+    "body": {
+      "fontFamily": "Manrope, sans-serif",
+      "weights": ["400", "500", "600"],
+      "usage": "Clean, highly legible sans-serif for inputs, rows, labels, and microcopy."
+    },
+    "monospace": {
+      "fontFamily": "JetBrains Mono, monospace",
+      "usage": "Use for all numeric amounts, calculations, and currency (R) to ensure decimal alignment and a fintech-precision vibe."
+    }
+  },
+  "colors": {
+    "archetype": "ORGANIC & EARTHY",
+    "theme": "Light theme preferred (cream/sage), with a complementary dark theme.",
+    "light": {
+      "background": "#FDFBF7",
+      "foreground": "#2C2C2A",
+      "surface": "#F4F1EB",
+      "border": "#E6E2D8",
+      "primary": "#6A7B62",
+      "primaryForeground": "#FFFFFF",
+      "destructive": "#C56B55",
+      "success": "#6A7B62"
+    },
+    "dark": {
+      "background": "#1A1C19",
+      "foreground": "#EAEBE8",
+      "surface": "#232622",
+      "border": "#31362F",
+      "primary": "#8A9A86",
+      "primaryForeground": "#1A1C19",
+      "destructive": "#E28B76",
+      "success": "#8A9A86"
+    },
+    "guidelines": "Never use pure #000000 or #808080. Always tint neutral greys with the earthy tone. Positive remaining balance should be Sage/Success, negative should be Terracotta/Destructive."
+  },
+  "layouts": {
+    "page": "Single column scrollable layout with a constrained max-width (e.g., max-w-4xl) to keep lines readable.",
+    "spacing": "Generous Spacing Philosophy. Use p-6, p-8, gap-8. Sections should be clearly separated by large margins (mt-12 or mt-16).",
+    "summaryCard": "Place a sticky or prominent summary card at the top or bottom using 'Clay & Crisp' neumorphic style or 'Crystal Glass' if sticky. Needs to clearly highlight Total Income, Total Expenses, and Remaining Balance.",
+    "sections": "Group Income, Individual Expenses, Household Expenses, Savings, and Emergency Fund clearly with H2 headers and subtle dividers. Do not use standard Bootstrap column grids."
+  },
+  "surfaces": {
+    "cards": "Neumorphism (The 'Tactile' Variant) - Background matches parent or slightly off-white, two subtle ambient shadows, sharp 1px border to ground it.",
+    "inputs": "Flat background with 1px border. Focus state must have higher contrast ring (e.g., focus:ring-2 focus:ring-primary focus:outline-none).",
+    "glass": "If the summary card is sticky, use Glassmorphism: backdrop-blur-xl bg-[#FDFBF7]/80 (or dark equivalent) with a delicate border."
+  },
+  "motion": {
+    "buttons": "Hover states must lift (-translate-y-0.5) and add shadow. Active states must press down.",
+    "rows": "When adding a new expense row, animate it in using framer-motion (e.g., height 0 to auto, opacity 0 to 1).",
+    "values": "Use animated number counters for the summary card if possible, or smooth fade transitions when numbers change."
+  },
+  "accessibility": {
+    "contrast": "Text must meet 4.5:1 ratio. Ensure Terracotta and Sage colors are dark enough against Cream background.",
+    "motion": "Respect prefers-reduced-motion.",
+    "testing": "All interactive elements must have data-testid attributes (e.g., data-testid='add-household-expense', data-testid='person-a-income')."
+  },
+  "component_guidelines": {
+    "shadcn": "Use Shadcn components for Inputs, Buttons, and Selects, but strip 'Vercel-look'. Rounding should be md or lg to feel softer and organic. Customise tailwind colors.",
+    "icons": "Use lucide-react for warm, soft icons (e.g., Plus, Trash, Wallet).",
+    "forms": "Inputs must clearly show which person they belong to. Inline editable labels for 'Person A' and 'Person B' using a transparent input or click-to-edit."
+  },
+  "instructions_to_main_agent": [
+    "Install framer-motion and lucide-react if not already present.",
+    "Implement the React state locally and sync to localStorage on every change using a custom hook (useLocalStorage).",
+    "Format all currency values explicitly using the selected currency symbol (default 'R'). Ensure numbers are formatted with commas for thousands.",
+    "Create inline-editable labels for 'Person A' and 'Person B' that update globally across the app.",
+    "The Remaining balance must dynamically change color: Green/Sage if >= 0, Red/Terracotta if < 0.",
+    "Use JetBrains Mono or a monospace font for all numeric input fields and summary numbers so they align cleanly.",
+    "Add 'data-testid' to all buttons, inputs, and total displays.",
+    "Implement the layout with a sticky Summary Header/Footer that tracks the scroll, so the user always sees their balance.",
+    "Ensure all components are implemented using .js/.jsx files."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style.",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Create new components that match the style and conventions of existing components when needed.",
+    "Examine existing components to understand the project's component patterns before creating new ones.",
+    "Use sonner for toasts, located in /app/frontend/src/components/ui/sonner.js or sonner.jsx."
+  ]
+}
